@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计网第三章 | Jerryの魔法小屋</title><meta name="author" content="Jerry Jiang"><meta name="copyright" content="Jerry Jiang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第三章数据链路层重要内容核心知识点数据链路层信道 点对点信道：这种信道使用一对一的点对点通信方式。主要使用PPP协议。 广播信道：这种信道使用一对多的广播通信方式，因此过程比较复杂。广播信道上连接的主机很多，因此必须使用专用的共享信道协议来协调这些主机的数据发送。主要使用CSMA&#x2F;CD协议。 数据链路层在互联网通信时所处的地位。可以看到，路由器是互联网核心部分最重要的设备，但是其在分组转发时使用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网第三章">
+<meta property="og:url" content="http://example.com/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Jerryの魔法小屋">
+<meta property="og:description" content="第三章数据链路层重要内容核心知识点数据链路层信道 点对点信道：这种信道使用一对一的点对点通信方式。主要使用PPP协议。 广播信道：这种信道使用一对多的广播通信方式，因此过程比较复杂。广播信道上连接的主机很多，因此必须使用专用的共享信道协议来协调这些主机的数据发送。主要使用CSMA&#x2F;CD协议。 数据链路层在互联网通信时所处的地位。可以看到，路由器是互联网核心部分最重要的设备，但是其在分组转发时使用的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg">
+<meta property="article:published_time" content="2023-10-28T06:44:55.000Z">
+<meta property="article:modified_time" content="2023-10-28T12:05:38.395Z">
+<meta property="article:author" content="Jerry Jiang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计网第三章',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-28 20:05:38'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><script src="/live2d-widget/autoload.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Jerryの魔法小屋"><span class="site-name">Jerryの魔法小屋</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计网第三章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-28T06:44:55.000Z" title="发表于 2023-10-28 14:44:55">2023-10-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-28T12:05:38.395Z" title="更新于 2023-10-28 20:05:38">2023-10-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计网第三章"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="第三章数据链路层"><a href="#第三章数据链路层" class="headerlink" title="第三章数据链路层"></a>第三章数据链路层</h1><h2 id="重要内容"><a href="#重要内容" class="headerlink" title="重要内容"></a>重要内容</h2><h2 id="核心知识点"><a href="#核心知识点" class="headerlink" title="核心知识点"></a>核心知识点</h2><h3 id="数据链路层信道"><a href="#数据链路层信道" class="headerlink" title="数据链路层信道"></a>数据链路层信道</h3><ol>
+<li><strong>点对点信道</strong>：这种信道使用<strong>一对一的点对点</strong>通信方式。主要使用<strong>PPP协议</strong>。</li>
+<li><strong>广播信道</strong>：这种信道使用<strong>一对多的广播</strong>通信方式，因此过程比较复杂。广播信道上连接的主机很多，因此必须使用专用的<strong>共享信道协议</strong>来协调这些主机的数据发送。主要使用<strong>CSMA/CD协议。</strong></li>
+<li>数据链路层在互联网通信时所处的地位。可以看到，路由器是互联网核心部分最重要的设备，但是其在分组转发时使用的协议栈只有<strong>下面三层</strong>，只负责以<strong>IP数据报（分组 ）</strong>的形式转发收到的分组。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/lianluceng.png" alt="lianluceng"></p>
+<h3 id="数据链路层基本问题"><a href="#数据链路层基本问题" class="headerlink" title="数据链路层基本问题"></a>数据链路层基本问题</h3><h4 id="数据链路和帧"><a href="#数据链路和帧" class="headerlink" title="数据链路和帧"></a>数据链路和帧</h4><ol>
+<li><strong>链路</strong>：从一个节点到相邻节点的一段物理线路。中间没有任何其他节点，只是一条路径的组成部分。</li>
+<li><strong>数据链路</strong>：是物理线路加上一些必要的<strong>通信协议</strong>来空值这些数据的传输，通常使用<strong>网络适配器（包括硬件和软件）</strong>来实现这些协议。</li>
+<li>早期的数据通信协议曾叫做通信<strong>规程（procedure）</strong>，所以在数据链路层，规程和协议是同义语。</li>
+<li><strong>协议数据单元</strong>：<strong>点对点信道</strong>的<strong>数据链路层</strong>的<strong>协议数据单元</strong>是<strong>数据帧</strong>，简称<strong>帧</strong>。网络层协议数据单元就是<strong>IP数据报（或数据报、分组或包）</strong>。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/zhen.png" alt="zhen"></p>
+<ol>
+<li>点对点信道的数据链路层在进行通讯时的主要步骤：<pre><code>                1. 节点A把网络层交下来的IP数据报添加**首尾封装成帧**
+                1. 发送给节点B的数据链路层
+                1. 若节点B收到的无差错，则**提取出IP数据报**交给上面的网络层，否则丢弃。
+</code></pre></li>
+</ol>
+<h4 id="三个基本问题"><a href="#三个基本问题" class="headerlink" title="三个基本问题"></a>三个基本问题</h4><h5 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h5><ol>
+<li>将IP数据报添加首尾<strong>封装成帧</strong></li>
+<li><strong>帧定界</strong>：通过添加首尾确定帧的界限。同时也包括了许多必要的<strong>控制信息</strong>。</li>
+<li><strong>最大传送单元MTU（Maximum Transfer Unit）</strong>：表示了帧的<strong>数据部分（IP数据报）</strong>的最大长度上限。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/封装成帧.png" alt="封装成帧"></p>
+<ol>
+<li>如果是ASCII码组成的文本文杰，可以使用<strong>帧定界符</strong>来表示帧定界。注意<strong>SOH（start of header）</strong>和<strong>EOT（end of transmission）</strong>是控制字符的名称，16进制编码分别是01和04，而不是真的三个字符。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/zhendingjie.png" alt="zhendingjie"></p>
+<h5 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h5><ol>
+<li><strong>透明传输</strong>：无论什么样的比特组合的数据，都可以按照原样没有差错地通过这个数据链路层。也就是<strong>数据链路层对于数据来说是透明的</strong>。</li>
+<li>对于ASCII码来说，一定不会出现像SOH和EOT这样的帧定界控制字符。但是对于非ASCII码的数据，可能某个字节的二进制代码恰好和SOH或EOT一样，数据链路层就会错误的“找到帧的边界”。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/透明传输.png" alt="toumingchuanshu"></p>
+<ol>
+<li><strong>字节填充/字符填充（byte/character stuffing）</strong>：发送端的数据链路层在控制字符前插入<strong>转义字符ESC</strong>，在接收方的数据链路层删除。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/字节填充.png" alt="byte stuffing"></p>
+<h5 id="差错检测"><a href="#差错检测" class="headerlink" title="差错检测"></a>差错检测</h5><ol>
+<li><p><strong>比特差错</strong>：0变成1，1变成0.</p>
+</li>
+<li><p><strong>误码率BER（Bit Error Rate）</strong>，传输错误的比特率</p>
+</li>
+<li><p><strong>循环冗余检验CRC（Cyclic Redundancy Check）</strong>:</p>
+<ol>
+<li>我们对于要发送的长度为k的数据M后面添加一个<strong>n位冗余码</strong>，一共发送 <strong>（k+n）</strong>位数据。</li>
+<li>n位冗余码求解：商定一个<strong>除数P（n+1位）</strong>，在被除数后面添加<strong>n个0</strong>，使用<strong>模2除法（也就是不进位）</strong>得出一个<strong>n位</strong>余数，这个余数也叫<strong>帧检测序列FCS（Frame Check Sequence）</strong>，也就是n位冗余码。</li>
+<li>在数据后面添加这个冗余码，这样数据除以除数的<strong>余数一定是0</strong>。若接收的余数为0，则没有差错，否则有，但无法确定第几位，丢弃。</li>
+<li>可以使用多项式表示CRC，多项式P(X)称为生成多项式，比如1101就是$x^3+x^2+1$</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/CRC.png" alt="FCS"></p>
+</li>
+<li><p>数据链路层只能保证<strong>帧内部</strong>没有差错，即无<strong>比特差错</strong>，帧之间的差错如<strong>帧丢失，帧冗余，帧失序</strong>，属于<strong>传输差错</strong>，通常交给<strong>TCP协议（运输层）来保证（可靠的，面向连接）</strong>。</p>
+</li>
+<li>同样，<strong>改正差错</strong>的任务也交由上层协议（如运输层的TCP协议）来完成。</li>
+</ol>
+<h3 id="点对点协议PPP"><a href="#点对点协议PPP" class="headerlink" title="点对点协议PPP"></a>点对点协议PPP</h3><h4 id="PPP（Point-to-Point-Protocol）特点"><a href="#PPP（Point-to-Point-Protocol）特点" class="headerlink" title="PPP（Point to Point Protocol）特点"></a>PPP（Point to Point Protocol）特点</h4><ul>
+<li>PPP协议就是用户计算机和ISP进行通信所使用的数据链路层协议。</li>
+</ul>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/ppp.png" alt="ppp"></p>
+<h5 id="满足的需求"><a href="#满足的需求" class="headerlink" title="满足的需求"></a>满足的需求</h5><ol>
+<li><strong>简单</strong> —— 这是首要的要求，且使不同厂商的<strong>互操作性</strong>提高了。</li>
+<li><strong>封装成帧</strong> —— 必须规定特殊的字符作为帧定界符。</li>
+<li><strong>透明性</strong> —— 必须保证数据传输的透明性。</li>
+<li><strong>多种网络层协议</strong> —— 能够在<strong>同一条物理链路上同时支持多种网络层协议</strong>，如IP和IPX等。</li>
+<li><strong>多类型链路</strong> —— 能够在多种类型的链路上运行，如串行并行，同步异步。</li>
+<li><strong>差错检测</strong> —— 能够对接收端收到的帧进行检测，并立即丢弃有差错的帧。</li>
+<li><strong>检测连接状态</strong> —— 能够及时自动检测出链路是否处于正常工作状态。</li>
+<li><strong>最大传送单元</strong> —— 必须对每一种类型的点对点链路设置最大传送单元 MTU 的标准默认值，促进各种实现之间的互操作性，<strong>MTU只是数据的最大长度</strong>。</li>
+<li><strong>网络层地址协商</strong> —— 必须提供一种机制使通信的两个网络层实体能够通过协商知道或能够配置彼此的网络层地址。</li>
+<li><strong>数据压缩协商</strong> —— 必须提供一种方法来协商使用数据压缩算法。</li>
+</ol>
+<h5 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h5><ol>
+<li>一个将IP数据报封装到串行链路的方法（<strong>封装成帧</strong>）。</li>
+<li>一个用来建立、配置和测试数据链路连接的<strong>链路控制协议LCP（Link Control Protocol）。</strong></li>
+<li>一套<strong>网络控制协议NCP（Network Control Protocol）。</strong></li>
+</ol>
+<h5 id="PPP协议的帧格式"><a href="#PPP协议的帧格式" class="headerlink" title="PPP协议的帧格式"></a>PPP协议的帧格式</h5><p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/PPP格式.png" alt="PPP frame"></p>
+<ol>
+<li>控制字段总长度：8个字节。 PPP 是面向字节的，所有的 PPP 帧的长度都是整数字节。 </li>
+<li>字段含义： <ol>
+<li>F（1字节）：首部第一和尾部第二，标志字段，代表定界符。 为0x7E，（符号“0x”），表示16进制。</li>
+<li>A、C（1字节）：A为地址字段，C为控制字段，但暂时没有含义。 </li>
+<li>协议字段（2字节）：表示当前信息部分是IP数据报还是LCP的控制数据还是NCP的控制数据。 </li>
+<li>FCS（2字节）：帧检测序列，用于差错检测中的循环冗余检测CRC方法。</li>
+</ol>
+</li>
+</ol>
+<h5 id="透明传输问题"><a href="#透明传输问题" class="headerlink" title="透明传输问题"></a>透明传输问题</h5><h6 id="字节填充"><a href="#字节填充" class="headerlink" title="字节填充"></a>字节填充</h6><ol>
+<li>使用场景：PPP使用<strong>异步传输</strong>，即<strong>一个字节一个字节</strong>传输。</li>
+<li>实现方式：<strong>软件。</strong></li>
+<li>做法：当信息字段中出现和标志字段相同的比特组合<strong>（0x7E）时，则进行字节填充的办法使得数据部分能够完整的传送到接收端。</strong>（添加转义字符）**<ol>
+<li>异步传输时，把转义符定义为<strong>0x7D</strong>，并使用字节填充，信息字段的<strong>0x7E</strong>字节转变为2字节序列<strong>（0x7D，0x5E）</strong></li>
+<li>每一个<strong>0x7D</strong>字节转变为2字节序列<strong>（0x7D，0x5D）</strong></li>
+<li>若出现ASCII码的控制字符（数值小于0x20），则在前面加一个0x7D，如0x03变成<strong>（0x7D，0x23）</strong></li>
+</ol>
+</li>
+</ol>
+<h6 id="零比特填充"><a href="#零比特填充" class="headerlink" title="零比特填充"></a>零比特填充</h6><ol>
+<li>使用场景：PPP使用<strong>同步传输</strong>，即<strong>连续的比特流传输</strong>。</li>
+<li>实现方式：<strong>硬件</strong>。</li>
+<li>做法：当信息字段出现了<strong>5个连续的1</strong>，那么就<strong>插入一个0</strong>，在接收时再将5个连续的1后的0删除。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/零比特填充.png" alt="0bit"></p>
+<h5 id="PPP协议的工作状态"><a href="#PPP协议的工作状态" class="headerlink" title="PPP协议的工作状态"></a>PPP协议的工作状态</h5><ol>
+<li>链路静止：这时用户个人电脑和ISP路由器不存在物理层的连接。当用户呼叫路由器时，路由器检测到载波信号建立连接。</li>
+<li>链路建立：这是LCP开始协商一些<strong>配置选项</strong>，即发送<strong>LCP的配置请求帧</strong>，链路的另一边可以<strong>配置确认、否认和拒绝帧</strong>。</li>
+<li>鉴别</li>
+<li>网络层协议：PPP链路两端的NCP可以运行不同的网络层协议，且使用同一个PPP协议及逆行通信。</li>
+<li>链路打开：两个PPP端点可以彼此向对方发送分组。</li>
+<li>回到链路静止</li>
+</ol>
+<blockquote>
+<p>可以看到PPP协议不是纯粹的数据链路层协议，还包含了物理层和网络层的内容。</p>
+</blockquote>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/LCP.png" alt="LCP"></p>
+<h3 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h3><h4 id="局域网的数据链路层"><a href="#局域网的数据链路层" class="headerlink" title="局域网的数据链路层"></a>局域网的数据链路层</h4><ol>
+<li>局域网特点：<strong>网络为一个单位所拥有，且地理范围和站点数目均有限。</strong></li>
+<li>局域网的优点<ol>
+<li><strong>广播功能</strong>：从一个站点可很方便地访问全网。局域网上的主机可共享连接在局域网上的各种硬件和软件资源。</li>
+<li>便于系统的<strong>扩展和演变</strong>。</li>
+<li>提高了系统的<strong>可靠性（reliability）、可靠性（reliability）和生存性（survivability）</strong>。</li>
+</ol>
+</li>
+<li>按拓扑分类<ol>
+<li><strong>星形网</strong>：由于<strong>集线器（hub）</strong>的出现变常用。</li>
+<li>环形网</li>
+<li>总线网</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/局域网.png" alt="局域网"></p>
+<ol>
+<li><p><strong>共享信道</strong>：</p>
+<ol>
+<li><strong>静态划分信道</strong>：用户一旦分到信道，就不会和其他用户发生冲突，如<strong>频分复用、时分复用、码分复用、波分复用等</strong>。缺点是：<strong>代价高、效率低、不适用于局域网。</strong>特点：<strong>固定分配</strong>。</li>
+<li><strong>动态媒体接入控制</strong>：又称<strong>多点接入（multiple access）</strong>。信道并非在通信时固定分配给用户。特点：<strong>动态分配</strong>。<ol>
+<li><strong>随机接入</strong>：所有用户可以在信道中<strong>随机</strong>地发送信息，占用此信道，而不用遵守静态划分的某种规则。但如果多个用户在同一时间发送信息，那么共享媒体就会产生<strong>碰撞</strong>，所有的用户发送都失败。（需要控制协议：CSMA/CD协议）</li>
+<li><strong>受控接入</strong>。多点线路探询（polling），或轮询。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>以太网的两个标准</p>
+<ol>
+<li><strong>DIX Ethernet V2</strong> 是世界上<strong>第一个</strong>局域网产品（以太网）的规约。</li>
+<li><strong>IEEE 802.3</strong> 是第一个 IEEE 的以太网标准。</li>
+</ol>
+</li>
+<li><p>局域网的数据链路层的子层：为了使数据链路层能更好地适应多种局域网标准，IEEE 802 委员会就将局域网的数据链路层拆成两个子层。</p>
+<ol>
+<li><strong>逻辑链路控制层 LLC （Logical Link Control）</strong>子层</li>
+<li><strong>媒体接入控制 MAC（Medium Access Control）</strong>子层</li>
+<li>与<strong>接入到传输媒体有关</strong>的内容都放在 MAC子层，而 LLC 子层则与传输媒体无关。</li>
+</ol>
+</li>
+<li><p><strong>适配器（adapter）</strong>：本来是主机箱内插入的一块网络接口板，又称网络接口卡NIC或网卡，但是现在已经不再使用单独的网卡了，而是叫适配器。适配器在接受和发送各种帧时，<strong>不使用计算机的CPU</strong>。</p>
+<ol>
+<li>收到错误帧直接扔掉，正确帧用<strong>中断</strong>通知计算机。</li>
+<li>计算机发送IP数据报时，由<strong>协议栈</strong>下发给适配器，适配器封装成帧发送到局域网。</li>
+<li>计算机硬件地址在<strong>适配器的ROM中</strong>，软件地址—IP地址在**计算机的存储器中。</li>
+<li>功能：串行/并行转换、缓存数据、在计算机的操作系统安装设备驱动程序、实现以太网协议</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/adapter.png" alt="adapter"></p>
+</li>
+</ol>
+<h4 id="CSMA-CD协议"><a href="#CSMA-CD协议" class="headerlink" title="CSMA/CD协议"></a>CSMA/CD协议</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ol>
+<li>总线上只要有一台计算机在发送数据，总线的传输资源就被占用，因此<strong>同一时间只能允许一台计算机发送数据</strong>。</li>
+<li><p>为了通信简便，以太网两个措施</p>
+<ol>
+<li>较为灵活的<strong>无连接</strong>的工作方式—不必先建立连接就可以直接发送数据</li>
+<li>以太网对发送的数据帧不编号，也不要求对方发回确认。理由是局域网的信道质量很好，差错概率小。</li>
+</ol>
+</li>
+<li><p><strong>CSMA/CD（Carrier Sense Multiple Access with Collision Detection）协议</strong>：<strong>载波监听多点接入/碰撞检测</strong>。</p>
+</li>
+<li>以太网发送的数据都使用<strong>曼彻斯特（Manchester）编码</strong>信号，原本的高低电压二进制的问题是出现一长串连续的1或连续的0时，接收端就无法从收到的比特流中提取位同步。而曼彻斯特编码将一个码元再<strong>分成两个相等的间隔</strong>，码元1是先高后低，0相反。（所占的频带宽度比原始的基带信号增加了一倍，<strong>因为每秒传输的码元数加倍了</strong>）</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/manchester.png" alt="manchester"></p>
+<h5 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h5><ol>
+<li><strong>多点接入（Multiple Access）</strong>：说明这是<strong>总线型网络（传统以太网）</strong>，计算机以多点接入的方式连接。实际上，星形网也可以采用类似的方式进行随机接入，本质类似。</li>
+<li><strong>载波监听（Carrier Sense）</strong>：不管在<strong>发送前还是发送中</strong>，每个站都必须不停地检测信道，以<strong>防止出现碰撞（发送前），检测碰撞发生并及时丢弃信息（发送中，由于发送的不确定性，发送前检测不能百分百防止碰撞，因为存在传播时延）</strong>。</li>
+<li><strong>碰撞检测（Collision Detection）</strong>：<strong>边发送边监听</strong>。 若检测到电压变化超过一个值后，就认为在信道上有<strong>至少两个</strong>站点同时发送信息便发生碰撞，这时很容易<strong>信号失真</strong>，要使两边发送的信息都<strong>作废</strong>。</li>
+<li><strong>电波在1km的电缆的传播时延约为5us</strong>，设总线上<strong>单程端到端传播时延记为pi</strong>，则最迟<strong>2pi</strong>可以知道发生了碰撞。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/pengzhuang.png" alt=""></p>
+<ol>
+<li>使用CSMA/CD协议的局域网的站不能同时进行发送和接收（但必须边发送边监听信道），所以只能进行<strong>半双工通信（双向交替通信）。</strong></li>
+<li><p>发送的不确定性：由于电磁波的<strong>传播时延</strong>，以太网<strong>不能保证在检测到信道空闲后的某一段时间内</strong>，一定能够把自己的数据帧成功的发送出去。</p>
+<ol>
+<li><strong>争用期（contention period），又称碰撞窗口（collision window）</strong>。只有经过争用期这段时间还未检测到碰撞，才能确定这次发送肯定不会发生碰撞。</li>
+<li><strong>截断二进制指数退避（truncated binary exponential backoff）</strong>：<strong>退避</strong>一个<strong>随机的时间</strong>。<ol>
+<li>基本退避时间为<strong>争用期2pi</strong>，具体的争用期时间是<strong>51.2us</strong>，对于10Mbit/s的以太网在争用期可发送512bits，即64byte，也可以说争用期是<strong>512比特时间</strong>。</li>
+<li><strong>K=MIN[10，重传次数]，</strong>每次重传时每个站从<strong>[0,1,…,2的K次方-1]</strong>中随机选一个数字<strong>r</strong>，重传推后的时间为<strong>r倍争用期</strong>。</li>
+<li>重传<strong>达到16次</strong>时，则站丢弃该帧，并向高层报告。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><strong>帧的最小长度</strong>：以太网规定有效帧的最小长度为<strong>64字节（512bit）</strong>，即<strong>争用期内发送的字节数。</strong>如果接收到的某个帧长度小于64字节，说明<strong>它在争用期内出现问题，需要丢弃</strong>，大于等于64字节说明该帧<strong>通过了争用期，不会再出现问题</strong>。</p>
+</li>
+<li><strong>帧间最小间隔</strong>：<strong>96bit时间</strong>，使刚刚收到数据帧的站的<strong>缓存</strong>来得及清理，做好接受下一帧的准备。</li>
+<li><strong>强化碰撞</strong>：在发生碰撞之后除了立即停止发送数据之外，还要发送<strong>32bit或48bit 的人为干扰信号</strong>，目的是为了能够<strong>让所有站点都知道发生了碰撞</strong>。</li>
+<li>下图总线被占用了<strong>Tb+Tj+pi</strong>的时间。</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/delay.png" alt=""></p>
+<ol>
+<li>CSMA/CD协议的总结</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/CSMA.png" alt=""></p>
+<h4 id="使用集线器的星形拓扑"><a href="#使用集线器的星形拓扑" class="headerlink" title="使用集线器的星形拓扑"></a>使用集线器的星形拓扑</h4><p><strong>双绞线以太网</strong>的出现，是局域网发展史上的一个重要的里程碑，从此以太网的拓扑结构从传统的总线型变为更为方便的<strong>星形网络。</strong></p>
+<p>优势：</p>
+<ol>
+<li><strong>价格便宜。</strong></li>
+<li><strong>使用方便。</strong></li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>集线器使用电子器件模拟实际电缆线的工作，所以使用集线器的以太网在逻辑上还是一个总线网，各站逻辑上共享总线。而且是用的还是<strong>CSMA/CD协议</strong>，同一时刻至多允许一个站发送数据（防止碰撞）；</li>
+<li>集线器的接口通过两对双绞线与计算机上的适配器相连；一个集线器像是一个多接口的转发器；</li>
+<li>集线器工作在物理层，每个接口只简单地转发比特，不进行碰撞检测；</li>
+<li>集线器采用专门的芯片，进行自适应串音回波抵消。</li>
+</ol>
+<h4 id="以太网的信道利用率"><a href="#以太网的信道利用率" class="headerlink" title="以太网的信道利用率"></a>以太网的信道利用率</h4><p>参数$\alpha$是<strong>以太网单程端到端时延$\tau$与帧的发送时间$T_0$</strong>之比：<script type="math/tex">a={\tau \over T_0}</script></p>
+<p>当$alpha-&gt;0$，表示只要一发生碰撞就可以检测出来。反之检测的很慢。因此 $alpha$应该尽可能小。</p>
+<ul>
+<li>当数据率一定时，<strong>以太网的连线长度受到限制（否则$\tau$的数值会太大）</strong>，同时<strong>以太网的帧长不能太短(否则$T_0$的值会太小，使$\alpha$太大)</strong>。</li>
+</ul>
+<p><strong>极限信道利用率</strong>：其中$T_0$为帧本身的发送时间，发送一帧占用的的线路时长为$T_0+\tau$。$S_{max}={T_0 \over T_0+\tau}={1 \over 1 + a}$$</p>
+<p>因此$\alpha$只有远小于1才能有尽可能高的信道利用率。</p>
+<h4 id="以太网的MAC层"><a href="#以太网的MAC层" class="headerlink" title="以太网的MAC层"></a>以太网的MAC层</h4><h5 id="硬件地址（物理地址或MAC地址）"><a href="#硬件地址（物理地址或MAC地址）" class="headerlink" title="硬件地址（物理地址或MAC地址）"></a><strong>硬件地址（物理地址或MAC地址）</strong></h5><p>IEEE802为局域网规定了一种<strong>48位</strong>的全球地址，是指局域网上每台计算机中固化在<strong>适配器（网卡）</strong>的ROM中的地址。（软件地址是IP地址，计算机的硬件地址只要适配器不更换，就不会改变，而软件地址可以随时变更）。总共<strong>48位（6字节）</strong>前三字节由管理全球硬件地址的机构——注册管理机构RA向适配器制造公司出售称为<strong>组织唯一标识符OUI（Organizationally Unique Identifier）</strong>，后三字节由制造公司自行分配，称为<strong>扩展标识符</strong>，（其中前三字节中有两位是用来标识是否位单播地址和是否属于全球管理的）。</p>
+<p>适配器有<strong>过滤</strong>功能，发往本站的帧分为了<strong>单播帧（unicast）</strong>，<strong>广播帧（broadcast）</strong>和<strong>多播帧（multicast）</strong>，分别为一对一，一对全部，一对多。且适配器有<strong>混杂方式（promiscuous mode）</strong>，如工具<strong>嗅探器（sniffer）</strong>。</p>
+<h5 id="MAC帧的格式"><a href="#MAC帧的格式" class="headerlink" title="MAC帧的格式"></a><strong>MAC帧</strong>的格式</h5><p>采用的是以太网V2的MAC帧格式。</p>
+<ol>
+<li>前两个字段为<strong>6字节的目的地址和6字节的源地址</strong>。第三个字段为<strong>2字节的类型字段</strong>，表示上一层的协议。第四个字段是<strong>数据字段，长度为46到1500字节</strong>，一般是网络层交付的<strong>IP数据报</strong>。第五个字段是长度为<strong>4个字节的帧检测序列FCS</strong>。</li>
+<li>MAC帧的长度范围是：<strong>64字节到1518字节。</strong>首尾部分的控制信息占<strong>18字节。</strong>其中，64字节的最小长度是CSMA/CD协议的规定（<strong>确保通过争用期</strong>）</li>
+<li>当MAC帧向下交付给物理层时，需要加上<strong>7个字节的前同步码（实现发送端和接收端之间的位同步）和1个字节的帧开始定界符（无结束定界符，直接观察曼彻斯特编码即可）</strong>。</li>
+<li>MAC帧中并没有<strong>数据长度</strong>的标识，但由于传输时使用的是曼彻斯特编码的方式，所以通过对曼彻斯特编码的信号特点的观察便可确定是否传送完毕；（曼彻斯特编码信号的码元正中间有一次电压转换）</li>
+</ol>
+<p><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mac.png" alt=""></p>
+<ol>
+<li>对于检查出的无效 MAC 帧(<strong>不是整数个字节、FCS有错，长度不在64~1518之间</strong>)就<strong>简单地丢弃</strong>。以太网<strong>不负责重传</strong>丢弃的帧。</li>
+</ol>
+<h4 id="以太网的扩展"><a href="#以太网的扩展" class="headerlink" title="以太网的扩展:"></a>以太网的扩展:</h4><ol>
+<li><p>在<strong>物理层</strong>扩展以太网</p>
+</li>
+<li><p>在</p>
+<p>数据链路层</p>
+<p>扩展以太网</p>
+<ol>
+<li>通过<strong>网桥</strong>扩展以太网</li>
+<li>通过<strong>以太网交换机</strong>扩展</li>
+<li><strong>虚拟局域网</strong></li>
+</ol>
+</li>
+</ol>
+<p><strong>(集线器是物理层设备，网桥是数据链路层设备</strong>)</p>
+<h2 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h2><p>7，9，10，16，24，25，28，33</p>
+<blockquote>
+<ol>
+<li>异步传输时，把转义符定义为<strong>0x7D</strong>，并使用字节填充，信息字段的<strong>0x7E</strong>字节转变为2字节序列<strong>（0x7D，0x5E）</strong></li>
+<li>每一个<strong>0x7D</strong>字节转变为2字节序列<strong>（0x7D，0x5D）</strong></li>
+<li>若出现ASCII码的控制字符（数值小于0x20），则在前面加一个0x7D，如0x03变成<strong>（0x7D，0x23）</strong></li>
+</ol>
+</blockquote>
+<p>7.要发送的数据为1101011011。采用CRC的生成多项式是$P(X)=X^4+<br>X+1$。试求应添加在数据后面的余数。<br>数据在传输过程中最后一个1变成了0，问接收端能否发现？<br>若数据在传输过程中最后两个1都变成了0，问接收端能否发现？<br>采用CRC检验后，数据链路层的传输是否就变成了可靠的传输？</p>
+<blockquote>
+<ol>
+<li>可以知道被除数是10011，所以余数应该是4位二进制数，使用1101011011后面添4个0，模2除法除以10011（注意中间没有进位），得到余数1110</li>
+<li>最后一位变成0，除以除数10011得到余数0011，可知能发现。</li>
+<li>最后两位变成0，除以除数10011得到余数0101，仍然被发现。</li>
+<li>并不一定完全可靠，仍然可能出现差错。</li>
+</ol>
+</blockquote>
+<p><strong>9.一个PPP帧的数据部分（用十六进制写出）是7D 5E FE 27 7D 5D 7D 5D 65 7D 5E。试问真正的数据是什么（用十六进制写出）？</strong></p>
+<blockquote>
+<p>遵循上面的规则得到 <strong>7E 5E FE 27 7D 7D 65 7E</strong></p>
+</blockquote>
+<p><strong>10.PPP协议使用同步传输技术传送比特串0110111111111100。试问经过零比特填充后变成怎样的比特串？若接收端收到的PPP帧的数据部分是0001110111110111110110，问删除发送端加入的零比特后变成怎样的比特串？</strong></p>
+<blockquote>
+<ol>
+<li>0比特填充后：011011111011111000</li>
+<li>删除：00011101111111111110</li>
+</ol>
+</blockquote>
+<p><strong>16.数据率为10Mb/s的以太网在物理媒体上的码元传输速率是多少码元/秒？</strong></p>
+<blockquote>
+<p>我们知道使用Manchester编码时，所占的频带宽度翻倍，因为每秒传输的码元数翻倍了，所以为20Mb/s</p>
+</blockquote>
+<p><strong>24.假定站点A和B在同一个10Mb/s以太网网段上。这两个站点之间的传播时延为225比特时间。现假定A开始发送一帧，并且在A发送结束之前B也发送一帧。如果A发送的是以太网所容许的最短的帧，那么A在检测到和B发生碰撞之前能否把自己的数据发送完毕？换言之，如果A在发送完毕之前并没有检测到碰撞，那么能否肯定A所发送的帧不会和B发送的帧发生碰撞？（提示：在计算时应当考虑到每一个以太网帧在发送到信道上时，在MAC帧前面还要增加若干字节的前同步码和帧定界符）</strong></p>
+<blockquote>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Jerry Jiang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0/">http://example.com/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Jerryの魔法小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="计网第二章"><img class="cover" src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计网第二章</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jerry Jiang</div><div class="author-info__description">赞美太阳！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/etherea1ity"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/etherea1ity" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:jsj31415926@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小屋！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">1.</span> <span class="toc-text">第三章数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">重要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">核心知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E4%BF%A1%E9%81%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据链路层信道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.2.</span> <span class="toc-text">数据链路层基本问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%92%8C%E5%B8%A7"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">数据链路和帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">三个基本问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7"><span class="toc-number">1.2.2.2.1.</span> <span class="toc-text">封装成帧</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93"><span class="toc-number">1.2.2.2.2.</span> <span class="toc-text">透明传输</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%AE%E9%94%99%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.2.2.3.</span> <span class="toc-text">差错检测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%AF%B9%E7%82%B9%E5%8D%8F%E8%AE%AEPPP"><span class="toc-number">1.2.3.</span> <span class="toc-text">点对点协议PPP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PPP%EF%BC%88Point-to-Point-Protocol%EF%BC%89%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">PPP（Point to Point Protocol）特点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BB%A1%E8%B6%B3%E7%9A%84%E9%9C%80%E6%B1%82"><span class="toc-number">1.2.3.1.1.</span> <span class="toc-text">满足的需求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-number">1.2.3.1.2.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.3.1.3.</span> <span class="toc-text">PPP协议的帧格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.3.1.4.</span> <span class="toc-text">透明传输问题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E5%A1%AB%E5%85%85"><span class="toc-number">1.2.3.1.4.1.</span> <span class="toc-text">字节填充</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9B%B6%E6%AF%94%E7%89%B9%E5%A1%AB%E5%85%85"><span class="toc-number">1.2.3.1.4.2.</span> <span class="toc-text">零比特填充</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.3.1.5.</span> <span class="toc-text">PPP协议的工作状态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%B9%BF%E6%92%AD%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">1.2.4.</span> <span class="toc-text">使用广播信道的数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">局域网的数据链路层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSMA-CD%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">CSMA&#x2F;CD协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.4.2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A6%81%E7%82%B9"><span class="toc-number">1.2.4.2.2.</span> <span class="toc-text">要点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%9B%86%E7%BA%BF%E5%99%A8%E7%9A%84%E6%98%9F%E5%BD%A2%E6%8B%93%E6%89%91"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">使用集线器的星形拓扑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="toc-number">1.2.4.4.</span> <span class="toc-text">以太网的信道利用率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84MAC%E5%B1%82"><span class="toc-number">1.2.4.5.</span> <span class="toc-text">以太网的MAC层</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%9C%B0%E5%9D%80%EF%BC%88%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E6%88%96MAC%E5%9C%B0%E5%9D%80%EF%BC%89"><span class="toc-number">1.2.4.5.1.</span> <span class="toc-text">硬件地址（物理地址或MAC地址）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MAC%E5%B8%A7%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.4.5.2.</span> <span class="toc-text">MAC帧的格式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-number">1.2.4.6.</span> <span class="toc-text">以太网的扩展:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">课后习题</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="计网第三章"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计网第三章"/></a><div class="content"><a class="title" href="/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="计网第三章">计网第三章</a><time datetime="2023-10-28T06:44:55.000Z" title="发表于 2023-10-28 14:44:55">2023-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="计网第二章"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计网第二章"/></a><div class="content"><a class="title" href="/2023/10/28/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="计网第二章">计网第二章</a><time datetime="2023-10-28T06:43:44.000Z" title="发表于 2023-10-28 14:43:44">2023-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/26/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%80%E7%AB%A0/" title="计网第一章"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计网第一章"/></a><div class="content"><a class="title" href="/2023/10/26/%E8%AE%A1%E7%BD%91%E7%AC%AC%E4%B8%80%E7%AB%A0/" title="计网第一章">计网第一章</a><time datetime="2023-10-26T08:53:25.000Z" title="发表于 2023-10-26 16:53:25">2023-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/24/testclassify/" title="testclassify"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="testclassify"/></a><div class="content"><a class="title" href="/2023/10/24/testclassify/" title="testclassify">testclassify</a><time datetime="2023-10-24T10:36:25.000Z" title="发表于 2023-10-24 18:36:25">2023-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/23/testimg/" title="testimg"><img src="https://imageurlbed.oss-cn-shenzhen.aliyuncs.com/img/mountains-7750722_1920.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="testimg"/></a><div class="content"><a class="title" href="/2023/10/23/testimg/" title="testimg">testimg</a><time datetime="2023-10-23T12:59:27.000Z" title="发表于 2023-10-23 20:59:27">2023-10-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Jerry Jiang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
